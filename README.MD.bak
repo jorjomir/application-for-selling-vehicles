@@ -30,10 +30,10 @@ composer install
 
 ### 3. Environment Setup
 
-Copy the contents of `.env.test` to `.env`:
+Copy the contents of `.env.local` to `.env`:
 
 ```bash
-cp .env.test .env
+cp .env.local .env
 ```
 
 Modify the `DATABASE_URL` within the `.env` file to match your database credentials:
