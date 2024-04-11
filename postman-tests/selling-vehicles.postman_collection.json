@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "c406463c-e9c7-4f67-8287-afda8d10932d",
+		"name": "MyPos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34111970"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"blq@abv.bg\",\r\n    \"password\": \"123\",\r\n    \"firstName\": \"Georgi\",\r\n    \"lastName\": \"Sabev\",\r\n    \"companyName\": \"Elgroup\",\r\n    \"phone\": \"089546546\",\r\n    \"userType\": \"buyer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var authToken = jsonData.token;\r",
+							"\r",
+							"if (authToken) {\r",
+							"    pm.environment.set(\"AUTH_TOKEN\", authToken);  // Set the token in the environment\r",
+							"} else {\r",
+							"    console.log(\"Token not found in response\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "assadadsadasdasdasdasdasda",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"georgimisaaaaa@abv.bg\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create offer - Car",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vehicle_type\": \"car\",\r\n    \"details\": {\r\n        \"brand\": \"BMW\",\r\n        \"model\": \"X3\",\r\n        \"engine_capacity\": 2000,\r\n        \"colour\": \"black\",\r\n        \"number_of_doors\": \"3\",\r\n        \"car_category\": \"sedan\",\r\n        \"price\": 12500,\r\n        \"quantity\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create offer - Motorcycle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vehicle_type\": \"motorcycle\",\r\n    \"details\": {\r\n        \"brand\": \"Kawasaki\",\r\n        \"model\": \"Ninja\",\r\n        \"engine_capacity\": 800,\r\n        \"colour\": \"green\",\r\n        \"price\": 12500,\r\n        \"quantity\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
